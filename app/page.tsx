@@ -14,6 +14,19 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
+const RobotSpline = dynamic(
+  () => import("@/components/RobotSpline"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[420px] flex items-center justify-center text-neutral-500">
+        Loading Robot...
+      </div>
+    ),
+  }
+);
+
+
 
 const Lanyard = dynamic(() => import("@/components/Lanyard"), {
   ssr: false,
@@ -42,6 +55,15 @@ const lanyardVariants = {
     transition: { type: "spring" as const, stiffness: 100, damping: 12 },
   },
 };
+
+const {
+  ref: robotRef,
+  inView: robotInView,
+} = useInView({
+  triggerOnce: true,
+  threshold: 0.3,
+});
+
 
 
   return (
@@ -206,6 +228,108 @@ const lanyardVariants = {
     </div>
   </SpotlightCard>
 </section>
+{/* ================= ROBOT & SKILLS SECTION ================= */}
+<section className="relative min-h-screen bg-black px-6 md:px-16 py-24">
+  <div className="max-w-7xl mx-auto">
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+            {/* LEFT — ROBOT PLACEHOLDER */}
+            <div className="flex justify-center">
+              <div
+        ref={robotRef}
+        className="w-full h-[420px] rounded-3xl  overflow-hidden"
+      >
+        {robotInView ? (
+          <RobotSpline />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-neutral-500">
+            Scroll to load 3D
+          </div>
+        )}
+      </div>
+
+      </div>
+
+      {/* RIGHT — SKILLS */}
+      <div className="space-y-10 text-white">
+
+        {/* SOFT SKILLS */}
+        <div>
+          <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
+            Soft Skills
+          </h3>
+          <div className="grid grid-cols-2 gap-3 text-sm text-neutral-300">
+            <span>Teamwork</span>
+            <span>Leadership</span>
+            <span>Time Management</span>
+            <span>Critical Thinking</span>
+            <span>Effective Communication</span>
+            <span>Project Management</span>
+          </div>
+        </div>
+
+        {/* TECHNICAL SKILLS */}
+        <div>
+          <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
+            Technical Skills
+          </h3>
+          <div className="grid grid-cols-2 gap-3 text-sm text-neutral-300">
+            <span>Full Stack Web Development</span>
+            <span>REST API</span>
+            <span>Database Management</span>
+            <span>UI / UX Design</span>
+            <span>Networking</span>
+            <span>Mobile App Development</span>
+          </div>
+        </div>
+
+        {/* PROGRAMMING LANGUAGES */}
+        <div>
+          <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
+            Programming Languages
+          </h3>
+          <div className="flex flex-wrap gap-3 text-sm">
+            {[
+              "PHP (Laravel)",
+              "JavaScript",
+              "CSS (Tailwind)",
+              "Dart (Flutter)",
+              "Python",
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-white/10 px-4 py-2 backdrop-blur"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* TOOLS */}
+        <div>
+          <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
+            Tools
+          </h3>
+          <div className="flex flex-wrap gap-3 text-sm">
+            {["VS Code", "GitHub", "Figma", "XAMPP"].map((tool) => (
+              <span
+                key={tool}
+                className="rounded-lg border border-white/10 px-4 py-2 text-neutral-300"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{/* =============== END ROBOT & SKILLS ================= */}
+
     </main>
   );
 }
