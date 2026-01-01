@@ -1,101 +1,211 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import Aurora from "@/components/Aurora";
+import ShinyText from "@/components/ShinyText";
+import BlurText from "@/components/BlurText";
+import SplashCursor from "@/components/SplashCursor";
+import StarBorder from "@/components/StarBorder";
+import SpotlightCard from "@/components/SpotlightCard";
+import dynamic from "next/dynamic";
+import CountUp from "@/components/CountUp"
+import GradientText from "@/components/GradientText";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+
+
+const Lanyard = dynamic(() => import("@/components/Lanyard"), {
+  ssr: false,
+});
+
+
+
+
+const ProfileCard = require("@/components/ProfileCard.jsx").default;
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [blurKey, setBlurKey] = useState(0);
+  // About section animation
+const controls = useAnimation();
+const [ref, inView] = useInView({ threshold: 0.2 });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+useEffect(() => {
+  if (inView) controls.start("visible");
+}, [controls, inView]);
+
+const lanyardVariants = {
+  hidden: { y: -200, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring" as const, stiffness: 100, damping: 12 },
+  },
+};
+
+
+  return (
+    <main className="relative">
+
+      {/* ================= HERO ONLY ================= */}
+      <section className="relative min-h-screen overflow-hidden">
+
+
+        {/* Aurora Background — HERO ONLY */}
+        <div className="absolute inset-0 -z-10">
+          <Aurora
+            colorStops={[
+              '#0e4a45', 
+              '#217d75', 
+              '#2e8f78'  
+            ]}
+            amplitude={1.1}
+            blend={0.3}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+        <div className="min-h-screen flex items-center px-6 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-7xl mx-auto">
+
+            {/* LEFT */}
+            <div className="flex flex-col justify-center text-white">
+              <span className="mb-4 inline-block w-fit rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur">
+                “Avoid or just undertake it”
+              </span>
+
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                <ShinyText
+                  text="Hallo Saya Muhammad Al-Faruq"
+                  className="shiny-inline"
+                  speed={3}
+                />
+              </h1>
+
+              <BlurText
+                key={blurKey}
+                text="Saya adalah mahasiswa yang berfokus pada pengembangan web, berperan sebagai Web Developer dan Full Stack Developer. Berpengalaman membangun website modern dan responsif, serta membuka jasa pembuatan website profesional untuk kebutuhan personal, bisnis, maupun institusi."
+                className="mt-4 max-w-xl text-white leading-relaxed"
+                animateBy="words"
+                direction="top"
+                delay={150}
+                animationFrom={{ filter: "blur(10px)", opacity: 0 }}
+                animationTo={[{ filter: "blur(0px)", opacity: 1 }]}
+                onAnimationComplete={() => {
+                  setTimeout(() => setBlurKey(k => k + 1), 2000);
+                }}
+              />
+
+              <div className="mt-8 flex gap-4">
+               <StarBorder
+                  as="button"
+                  className="custom-class"
+                  color="cyan"
+                  speed="4s"
+                >
+                    <ShinyText
+                  text="Download CV"
+                  className="shiny-inline"
+                  speed={3}
+                />
+                </StarBorder>
+
+                <StarBorder
+                  as="button"
+                  className="custom-class"
+                  color="cyan"
+                  speed="4s"
+                >
+                     <ShinyText
+                  text="Explore My Project"
+                  className="shiny-inline"
+                  speed={3}
+                />
+                </StarBorder>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="flex justify-center md:justify-end">
+              <div className="scale-[0.8] md:scale-[0.75] origin-center">
+                <ProfileCard
+                  avatarUrl="/c.jpeg"
+                  miniAvatarUrl="/c.jpeg"
+                  name="Muhammad Al-Faruq"
+                  title="Web Developer"
+                  handle="_alfaruq._"
+                  status="Mahasiswa"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {/* ============== END HERO ================= */}
+
+ <section ref={ref} className="min-h-screen bg-black px-4 md:px-8 pt-5 pb-24 flex justify-center">
+  <SpotlightCard className="w-full max-w-4xl">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      {/* LEFT — LANYARD */}
+          <div className="flex justify-center">
+            {inView && <Lanyard />}
+          </div>
+
+      {/* RIGHT — ABOUT CONTENT */}
+      <div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white">
+          Tentang <span className="text-[#2e8f78]">Saya</span>
+        </h2>
+
+        <p className="text-neutral-400 leading-relaxed mb-4">
+          Saya adalah mahasiswa Sistem Informasi di ITB Stikom Ambon dan saat ini aktif sebagai Freelance Web Developer.  
+          Dengan pengalaman praktis di dunia pengembangan web, saya terbiasa membangun solusi digital yang efektif dan estetis.
+        </p>
+
+        <p className="text-neutral-400 leading-relaxed">
+          Selain itu, saya memiliki pengalaman mengajar mata pelajaran Website di SMK Muhammadiyah Ambon.  
+          Pengalaman ini memperkuat kemampuan saya dalam komunikasi, mentoring, dan menyampaikan konsep teknis secara jelas.
+        </p>
+
+        {/* STATS */}
+        <div className="grid grid-cols-3 gap-6 mt-8">
+          <div>
+            <h3 className="text-3xl font-bold">
+              <GradientText colors={["#2e8f78","#81e6d9"]} animationSpeed={3} showBorder={false}>
+                <CountUp from={0} to={2} duration={2} className="inline-block" />+
+              </GradientText>
+            </h3>
+            <p className="text-sm text-neutral-500">Tahun Freelance</p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold">
+              <GradientText colors={["#2e8f78","#81e6d9"]} animationSpeed={3} showBorder={false}>
+                <CountUp from={0} to={15} duration={2} className="inline-block" />+
+              </GradientText>
+            </h3>
+            <p className="text-sm text-neutral-500">Proyek Web Selesai</p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold">
+              <GradientText colors={["#2e8f78","#81e6d9"]} animationSpeed={3} showBorder={false}>
+                <CountUp from={0} to={1} duration={2} className="inline-block" />+
+              </GradientText>
+            </h3>
+            <p className="text-sm text-neutral-500">Sekolah Mengajar</p>
+          </div>
+        </div>
+
+        {/* BUTTON */}
+        <button className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2e8f78] hover:bg-[#276d63] transition text-white">
+          Unduh CV
+        </button>
+      </div>
     </div>
+  </SpotlightCard>
+</section>
+    </main>
   );
 }
