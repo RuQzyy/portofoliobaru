@@ -4,8 +4,9 @@ import { gsap } from 'gsap';
 interface MenuItemData {
   link: string;
   text: string;
-  image: string;
+  image: string[]; // <-- support multiple images
 }
+
 
 interface FlowingMenuProps {
   items?: MenuItemData[];
@@ -31,8 +32,8 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({
   speed = 15,
   textColor = '#fff',
   bgColor = '#060010',
-  marqueeBgColor = '#fff',
-  marqueeTextColor = '#060010',
+  marqueeBgColor = '#2e8f78',
+  marqueeTextColor = '#ffffffff',
   borderColor = '#fff'
 }) => {
   return (
@@ -168,17 +169,36 @@ const MenuItem: React.FC<MenuItemProps> = ({
         ref={marqueeRef}
         style={{ backgroundColor: marqueeBgColor }}
       >
-        <div className="h-full w-fit flex" ref={marqueeInnerRef}>
-          {[...Array(repetitions)].map((_, idx) => (
-            <div className="marquee-part flex items-center flex-shrink-0" key={idx} style={{ color: marqueeTextColor }}>
-              <span className="whitespace-nowrap uppercase font-normal text-[4vh] leading-[1] px-[1vw]">{text}</span>
-              <div
-                className="w-[200px] h-[7vh] my-[2em] mx-[2vw] py-[1em] rounded-[50px] bg-cover bg-center"
-                style={{ backgroundImage: `url(${image})` }}
-              />
-            </div>
-          ))}
-        </div>
+       <div className="h-full w-fit flex" ref={marqueeInnerRef}>
+  {[...Array(repetitions)].map((_, idx) => (
+    <div
+      key={idx}
+      className="marquee-part flex items-center flex-shrink-0"
+      style={{ color: marqueeTextColor }}
+    >
+      {/* TEXT */}
+      <span className="whitespace-nowrap uppercase font-normal text-[4vh] leading-[1] px-[1vw]">
+        {text}
+      </span>
+
+      {/* IMAGE SPLIT */}
+      <div className="w-[260px] h-[7vh] my-[2em] mx-[2vw] rounded-[50px] overflow-hidden flex">
+        {/* LEFT IMAGE */}
+        <div
+          className="w-1/2 h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${image[0]})` }}
+        />
+
+        {/* RIGHT IMAGE */}
+        <div
+          className="w-1/2 h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${image[1]})` }}
+        />
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   );

@@ -67,7 +67,23 @@ const [activeProject, setActiveProject] = useState<
   "web" | "app" | null
 >(null);
 
+useEffect(() => {
+  const handleHashChange = () => {
+    if (window.location.hash === "#project-web") {
+      setActiveProject("web");
+    }
 
+    if (window.location.hash === "#project-app") {
+      setActiveProject("app");
+    }
+  };
+
+  handleHashChange(); // trigger awal
+  window.addEventListener("hashchange", handleHashChange);
+
+  return () =>
+    window.removeEventListener("hashchange", handleHashChange);
+}, []);
 
 
   return (
@@ -376,10 +392,10 @@ const [activeProject, setActiveProject] = useState<
 
 
 {/* ================= PROJECT FLOWING MENU ================= */}
-<section className="bg-black px-6 md:px-16 py-20">
-  <div className="max-w-7xl mx-auto">
+<section className="bg-black py-20 overflow-hidden">
 
-    {/* TITLE */}
+  {/* TITLE — TETAP TERBATAS */}
+  <div className="max-w-7xl mx-auto px-6 md:px-16">
     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
       My <span className="text-[#2e8f78]">Projects</span>
     </h2>
@@ -387,29 +403,68 @@ const [activeProject, setActiveProject] = useState<
     <p className="text-neutral-400 max-w-xl mx-auto mb-10 text-center text-sm md:text-base">
       Jelajahi proyek website dan aplikasi yang pernah saya kembangkan.
     </p>
-
-    {/* FLOWING MENU — FULL WIDTH */}
-    <div className="relative w-full h-[300px]">
-      <FlowingMenu
-        items={[
-          {
-            text: "Project Web",
-            link: "/projects/web",
-            image: "/preview-web.jpg",
-          },
-          {
-            text: "Project Aplikasi",
-            link: "/projects/app",
-            image: "/preview-app.jpg",
-          },
-        ]}
-      />
-    </div>
-
   </div>
+
+  {/* FLOWING MENU — FULL SCREEN WIDTH */}
+  <div className="relative w-screen h-[260px]">
+    <FlowingMenu
+      items={[
+        {
+          text: "Project Web",
+          link: "#project-web",
+          image: ["/img/Laravel.jpg", "/img/React.png"],
+        },
+
+        {
+          text: "Project Aplikasi",
+          link: "#project-app",
+           image: [ "/img/Laravel.jpg","/img/flut.png"],
+        },
+      ]}
+    />
+  </div>
+
 </section>
 {/* =============== END PROJECT FLOWING MENU ================= */}
 
+
+{/* =============== PROJECT WEB ================= */}
+
+{activeProject === "web" && (
+  <section
+    id="project-web"
+    className="bg-black px-6 md:px-16 py-24 pt-0"
+  >
+    <div className="max-w-7xl mx-auto">
+      <h3 className="text-3xl font-bold text-white mb-10">
+        Project <span className="text-[#2e8f78]">Web</span>
+      </h3>
+
+      <p className="text-neutral-400">
+        (Nanti isi Circular Gallery Project Web)
+      </p>
+    </div>
+  </section>
+)}
+
+{/* =============== PROJECT APP ================= */}
+
+{activeProject === "app" && (
+  <section
+    id="project-app"
+    className="bg-black px-6 md:px-16 py-24 pt-0"
+  >
+    <div className="max-w-7xl mx-auto">
+      <h3 className="text-3xl font-bold text-white mb-10">
+        Project <span className="text-[#2e8f78]">Aplikasi</span>
+      </h3>
+
+      <p className="text-neutral-400">
+        (Nanti isi Circular Gallery Project Aplikasi)
+      </p>
+    </div>
+  </section>
+)}
 
     </main>
   );
