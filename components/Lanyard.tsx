@@ -161,25 +161,28 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
   target.z = Math.min(target.z, 18);
 
-  dragLerp.current.lerp(target, 0.12);
+const dragStrength = dragged ? 8 : 4;
+dragLerp.current.lerp(target, 1 - Math.exp(-dragStrength * delta));
+
 
   [card, j1, j2, j3, fixed].forEach(r => r.current?.wakeUp());
 
-  card.current?.setNextKinematicTranslation({
-    x: dragLerp.current.x,
-    y: dragLerp.current.y,
-    z: dragLerp.current.z
-  });
+ const current = card.current.translation();
+
+card.current.setNextKinematicTranslation({
+  x: THREE.MathUtils.lerp(current.x, dragLerp.current.x, 0.85),
+  y: THREE.MathUtils.lerp(current.y, dragLerp.current.y, 0.85),
+  z: THREE.MathUtils.lerp(current.z, dragLerp.current.z, 0.85)
+});
+
 }
 
     if (fixed.current) {
       [j1, j2].forEach(ref => {
         if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
         const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
-        ref.current.lerped.lerp(
-          ref.current.translation(),
-          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
-        );
+         const followSpeed = 1 - Math.exp(-12 * delta);
+        ref.current.lerped.lerp(ref.current.translation(), followSpeed);
       });
       curve.points[0].copy(j3.current.translation());
       curve.points[1].copy(j2.current.lerped);
@@ -223,7 +226,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
             onPointerUp={(e: any) => {
               e.target.releasePointerCapture(e.pointerId);
               drag(false);
-              dragLerp.current.copy(card.current.translation());
+                dragLerp.current.copy(card.current.translation());
+                card.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+                card.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
             }}
 
             onPointerDown={(e: any) => {

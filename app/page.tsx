@@ -13,6 +13,8 @@ import GradientText from "@/components/GradientText";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import { GitHubCalendar } from "react-github-calendar";
+
 
 const RobotSpline = dynamic(
   () => import("@/components/RobotSpline"),
@@ -26,14 +28,9 @@ const RobotSpline = dynamic(
   }
 );
 
-
-
 const Lanyard = dynamic(() => import("@/components/Lanyard"), {
   ssr: false,
 });
-
-
-
 
 const ProfileCard = require("@/components/ProfileCard.jsx").default;
 
@@ -331,6 +328,45 @@ const {
   </div>
 </section>
 {/* =============== END ROBOT & SKILLS ================= */}
+
+{/* ================= GITHUB CONTRIBUTIONS ================= */}
+<section className="bg-black px-6 md:px-16 py-24">
+  <div className="max-w-7xl mx-auto">
+
+    {/* TITLE */}
+    <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+      GitHub <span className="text-[#2e8f78]">Contributions</span>
+    </h2>
+
+    {/* CALENDAR */}
+    <div className="w-full overflow-x-auto">
+    <div className="github-calendar-wrapper">
+  <GitHubCalendar
+    username="RuQzyy"
+    blockSize={14}
+    blockMargin={4}
+    fontSize={14}
+    showMonthLabels
+    showTotalCount
+    colorScheme="dark"
+    theme={{
+      dark: [
+        "#161b22",
+        "#0e4429",
+        "#006d32",
+        "#26a641",
+        "#39d353",
+      ],
+    }}
+  />
+</div>
+
+    </div>
+
+  </div>
+</section>
+{/* =============== END GITHUB CONTRIBUTIONS ================= */}
+
 
     </main>
   );

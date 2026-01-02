@@ -76,3 +76,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+.github-calendar-wrapper text {
+  fill: #ffffff !important;
+}
+
+
+.github-calendar-wrapper .react-github-calendar__total-count {
+  color: #39d353 !important;
+  font-weight: 600;
+}
