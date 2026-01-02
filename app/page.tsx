@@ -14,6 +14,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { GitHubCalendar } from "react-github-calendar";
+import FlowingMenu from "@/components/FlowingMenu";
+
 
 
 const RobotSpline = dynamic(
@@ -60,6 +62,11 @@ const {
   triggerOnce: true,
   threshold: 0.3,
 });
+
+const [activeProject, setActiveProject] = useState<
+  "web" | "app" | null
+>(null);
+
 
 
 
@@ -366,6 +373,42 @@ const {
   </div>
 </section>
 {/* =============== END GITHUB CONTRIBUTIONS ================= */}
+
+
+{/* ================= PROJECT FLOWING MENU ================= */}
+<section className="bg-black px-6 md:px-16 py-20">
+  <div className="max-w-7xl mx-auto">
+
+    {/* TITLE */}
+    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+      My <span className="text-[#2e8f78]">Projects</span>
+    </h2>
+
+    <p className="text-neutral-400 max-w-xl mx-auto mb-10 text-center text-sm md:text-base">
+      Jelajahi proyek website dan aplikasi yang pernah saya kembangkan.
+    </p>
+
+    {/* FLOWING MENU — FULL WIDTH */}
+    <div className="relative w-full h-[300px]">
+      <FlowingMenu
+        items={[
+          {
+            text: "Project Web",
+            link: "/projects/web",
+            image: "/preview-web.jpg",
+          },
+          {
+            text: "Project Aplikasi",
+            link: "/projects/app",
+            image: "/preview-app.jpg",
+          },
+        ]}
+      />
+    </div>
+
+  </div>
+</section>
+{/* =============== END PROJECT FLOWING MENU ================= */}
 
 
     </main>
