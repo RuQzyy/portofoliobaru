@@ -234,22 +234,24 @@ const {
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-            {/* LEFT — ROBOT PLACEHOLDER */}
-            <div className="flex justify-center">
-              <div
-        ref={robotRef}
-        className="w-full h-[420px] rounded-3xl  overflow-hidden"
-      >
-        {robotInView ? (
-          <RobotSpline />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-neutral-500">
-            Scroll to load 3D
-          </div>
-        )}
+           {/* LEFT — ROBOT PLACEHOLDER */}
+<div className="flex justify-center">
+  <div
+    ref={robotRef}
+    className="relative w-full h-[400px] overflow-hidden"
+  >
+    {robotInView ? (
+      <div className="absolute inset-0 scale-[1.3] translate-y-2">
+        <RobotSpline />
       </div>
+    ) : (
+      <div className="w-full h-full flex items-center justify-center text-neutral-500">
+        Scroll to load 3D
+      </div>
+    )}
+  </div>
+</div>
 
-      </div>
 
       {/* RIGHT — SKILLS */}
       <div className="space-y-10 text-white">
@@ -292,10 +294,10 @@ const {
           <div className="flex flex-wrap gap-3 text-sm">
             {[
               "PHP (Laravel)",
-              "JavaScript",
+              "JavaScript (React)",
               "CSS (Tailwind)",
               "Dart (Flutter)",
-              "Python",
+              "Python (Django)",
             ].map((item) => (
               <span
                 key={item}
