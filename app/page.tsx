@@ -15,6 +15,8 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import FlowingMenu from "@/components/FlowingMenu";
+import CircularGallery from "@/components/CircularGallery";
+
 
 
 
@@ -83,7 +85,31 @@ useEffect(() => {
 
   return () =>
     window.removeEventListener("hashchange", handleHashChange);
-}, []);
+       }, []);
+
+    {/* ================= CONST PROJECT ================= */}
+
+    const webProjects = [
+  {
+    image: "/img/tes1.png",
+    text: "Sistem Absensi Sekolah",
+  },
+  {
+    image: "/img/tes2.png",
+    text: "Pembayaran SPP",
+  },
+  {
+    image: "/img/tes1.png",
+    text: "Sistem Absensi Sekolah",
+  },
+];
+
+const appProjects = [
+  {
+    image: "/img/tes1.png",
+    text: "Aplikasi Antrian Desa",
+  },
+];
 
 
   return (
@@ -392,7 +418,7 @@ useEffect(() => {
 
 
 {/* ================= PROJECT FLOWING MENU ================= */}
-<section className="bg-black py-20 overflow-hidden">
+<section className="bg-black py-20 overflow-hidden pn-0">
 
   {/* TITLE — TETAP TERBATAS */}
   <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -428,44 +454,27 @@ useEffect(() => {
 {/* =============== END PROJECT FLOWING MENU ================= */}
 
 
-{/* =============== PROJECT WEB ================= */}
+{/* =============== PROJECT section ================= */}
 
-{activeProject === "web" && (
-  <section
-    id="project-web"
-    className="bg-black px-6 md:px-16 py-24 pt-0"
-  >
-    <div className="max-w-7xl mx-auto">
-      <h3 className="text-3xl font-bold text-white mb-10">
-        Project <span className="text-[#2e8f78]">Web</span>
-      </h3>
+<section className="bg-black py-24 pt-0">
+  <div className="max-w-7xl mx-auto pt-0">
 
-      <p className="text-neutral-400">
-        (Nanti isi Circular Gallery Project Web)
-      </p>
-    </div>
-  </section>
-)}
+    {/* PROJECT WEB */}
+    {activeProject === "web" && (
+      <div className="w-full h-[420px]">
+        <CircularGallery items={webProjects} />
+      </div>
+    )}
 
-{/* =============== PROJECT APP ================= */}
+    {/* PROJECT APP */}
+    {activeProject === "app" && (
+      <div className="w-full h-[420px]">
+        <CircularGallery items={appProjects} />
+      </div>
+    )}
 
-{activeProject === "app" && (
-  <section
-    id="project-app"
-    className="bg-black px-6 md:px-16 py-24 pt-0"
-  >
-    <div className="max-w-7xl mx-auto">
-      <h3 className="text-3xl font-bold text-white mb-10">
-        Project <span className="text-[#2e8f78]">Aplikasi</span>
-      </h3>
-
-      <p className="text-neutral-400">
-        (Nanti isi Circular Gallery Project Aplikasi)
-      </p>
-    </div>
-  </section>
-)}
-
+  </div>
+</section>
     </main>
   );
 }
