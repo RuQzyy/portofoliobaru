@@ -91,23 +91,31 @@ useEffect(() => {
 
     const webProjects = [
   {
-    image: "/img/tes1.png",
-    text: "Sistem Absensi Sekolah",
+    image: "/img/tes.png",
+    text: "QUEUE DESA",
   },
   {
-    image: "/img/tes2.png",
-    text: "Pembayaran SPP",
+    image: "/img/beasiswa1.png",
+    text: "Portal Beasiswa Mas Al-Hilal",
   },
   {
-    image: "/img/tes1.png",
+    image: "/img/absen.png",
     text: "Sistem Absensi Sekolah",
+  },
+   {
+    image: "/img/SPMB.png",
+    text: "Sistem Penerimaan Murid Baru",
+  },
+  {
+    image: "/img/baileo.png",
+    text: "Sistem Penerimaan Murid Baru",
   },
 ];
 
 const appProjects = [
   {
-    image: "/img/tes1.png",
-    text: "Aplikasi Antrian Desa",
+    image: "/img/money1.png",
+    text: "Money Tracker",
   },
 ];
 
@@ -379,7 +387,7 @@ const appProjects = [
 {/* =============== END ROBOT & SKILLS ================= */}
 
 {/* ================= GITHUB CONTRIBUTIONS ================= */}
-<section className="bg-black px-6 md:px-16 py-24">
+<section className="bg-black px-6 md:px-16 py-24 pb-0">
   <div className="max-w-7xl mx-auto">
 
     {/* TITLE */}
