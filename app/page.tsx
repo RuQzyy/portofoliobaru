@@ -17,6 +17,8 @@ import { GitHubCalendar } from "react-github-calendar";
 import FlowingMenu from "@/components/FlowingMenu";
 import CircularGallery from "@/components/CircularGallery";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 
 
 
@@ -91,30 +93,30 @@ useEffect(() => {
 
     const webProjects = [
   {
-    image: "/img/tes.png",
+    image: `${BASE}/img/tes.png`,
     text: "QUEUE DESA",
   },
   {
-    image: "/img/beasiswa1.png",
+    image: `${BASE}/img/beasiswa1.png`,
     text: "Portal Beasiswa Mas Al-Hilal",
   },
   {
-    image: "/img/absen.png",
+    image: `${BASE}/img/absen.png`,
     text: "Sistem Absensi Sekolah",
   },
-   {
-    image: "/img/SPMB.png",
+  {
+    image: `${BASE}/img/SPMB.png`,
     text: "Sistem Penerimaan Murid Baru",
   },
   {
-    image: "/img/baileo.png",
+    image: `${BASE}/img/baileo.png`,
     text: "Sistem Penerimaan Murid Baru",
   },
 ];
 
 const appProjects = [
   {
-    image: "/img/money1.png",
+    image: `${BASE}/img/money1.png`,
     text: "Money Tracker",
   },
 ];
@@ -204,8 +206,8 @@ const appProjects = [
             <div className="flex justify-center md:justify-end">
               <div className="scale-[0.8] md:scale-[0.75] origin-center">
                 <ProfileCard
-                  avatarUrl="/c.jpeg"
-                  miniAvatarUrl="/c.jpeg"
+                  avatarUrl={`${BASE}/c.jpeg`}
+                  miniAvatarUrl={`${BASE}/c.jpeg`}
                   name="Muhammad Al-Faruq"
                   title="Web Developer"
                   handle="_alfaruq._"
@@ -446,13 +448,13 @@ const appProjects = [
         {
           text: "Project Web",
           link: "#project-web",
-          image: ["/img/Laravel.jpg", "/img/React.png"],
+          image: [`${BASE}/img/Laravel.jpg`, `${BASE}/img/React.png`],
         },
 
         {
           text: "Project Aplikasi",
           link: "#project-app",
-           image: [ "/img/Laravel.jpg","/img/flut.png"],
+           image: [`${BASE}/img/Laravel.jpg`, `${BASE}/img/flut.png`],
         },
       ]}
     />

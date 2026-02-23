@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-
-  // WAJIB untuk GitHub Pages
   output: "export",
+
   basePath: "/portofoliobaru",
   assetPrefix: "/portofoliobaru/",
+
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
