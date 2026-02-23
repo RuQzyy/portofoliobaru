@@ -45,47 +45,52 @@ export default function Lanyard({
 
   return (
    <div className="relative z-0 w-full h-[420px] md:h-[520px] flex justify-center items-start overflow-hidden">
-      <Canvas
-        camera={{ position, fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ alpha: transparent }}
-        onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
-      >
-        <ambientLight intensity={Math.PI} />
-        <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-          <Band isMobile={isMobile} />
-        </Physics>
-        <Environment blur={0.75}>
-          <Lightformer
-            intensity={2}
-            color="white"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
-            color="white"
-            position={[-10, 0, 14]}
-            rotation={[0, Math.PI / 2, Math.PI / 3]}
-            scale={[100, 10, 1]}
-          />
-        </Environment>
-      </Canvas>
+    <Canvas
+  camera={{ position, fov }}
+  dpr={[1, isMobile ? 1.5 : 2]}
+  gl={{ alpha: transparent }}
+  onCreated={(state: { gl: THREE.WebGLRenderer }) => {
+  state.gl.setClearColor(
+    new THREE.Color(0x000000),
+    transparent ? 0 : 1
+  );
+}}
+>
+  <ambientLight intensity={Math.PI} />
+  <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+    <Band isMobile={isMobile} />
+  </Physics>
+  <Environment blur={0.75}>
+    <Lightformer
+      intensity={2}
+      color="white"
+      position={[0, -1, 5]}
+      rotation={[0, 0, Math.PI / 3]}
+      scale={[100, 0.1, 1]}
+    />
+    <Lightformer
+      intensity={3}
+      color="white"
+      position={[-1, -1, 1]}
+      rotation={[0, 0, Math.PI / 3]}
+      scale={[100, 0.1, 1]}
+    />
+    <Lightformer
+      intensity={3}
+      color="white"
+      position={[1, 1, 1]}
+      rotation={[0, 0, Math.PI / 3]}
+      scale={[100, 0.1, 1]}
+    />
+    <Lightformer
+      intensity={10}
+      color="white"
+      position={[-10, 0, 14]}
+      rotation={[0, Math.PI / 2, Math.PI / 3]}
+      scale={[100, 10, 1]}
+    />
+  </Environment>
+</Canvas>
     </div>
   );
 }
