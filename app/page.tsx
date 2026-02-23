@@ -91,30 +91,30 @@ useEffect(() => {
 
     const webProjects = [
   {
-    image: "/img/tes.png",
+    image: "/portofoliobaru/img/tes.png",
     text: "QUEUE DESA",
   },
   {
-    image: "/img/beasiswa1.png",
+    image: "/portofoliobaru/img/beasiswa1.png",
     text: "Portal Beasiswa Mas Al-Hilal",
   },
   {
-    image: "/img/absen.png",
+    image: "/portofoliobaru/img/absen.png",
     text: "Sistem Absensi Sekolah",
   },
    {
-    image: "/img/SPMB.png",
+    image: "/portofoliobaru/img/SPMB.png",
     text: "Sistem Penerimaan Murid Baru",
   },
   {
-    image: "/img/baileo.png",
+    image: "/portofoliobaru/img/baileo.png",
     text: "Sistem Penerimaan Murid Baru",
   },
 ];
 
 const appProjects = [
   {
-    image: "/img/money1.png",
+    image: "/portofoliobaru/img/money1.png",
     text: "Money Tracker",
   },
 ];
@@ -204,8 +204,8 @@ const appProjects = [
             <div className="flex justify-center md:justify-end">
               <div className="scale-[0.8] md:scale-[0.75] origin-center">
                 <ProfileCard
-                  avatarUrl="/c.jpeg"
-                  miniAvatarUrl="/c.jpeg"
+                  avatarUrl="./c.jpeg"
+                  miniAvatarUrl="./c.jpeg"
                   name="Muhammad Al-Faruq"
                   title="Web Developer"
                   handle="_alfaruq._"
@@ -446,13 +446,13 @@ const appProjects = [
         {
           text: "Project Web",
           link: "#project-web",
-          image: ["/img/Laravel.jpg", "/img/React.png"],
+          image: ["/portofoliobaru/img/Laravel.jpg", "/portofoliobaru/img/React.png"],
         },
 
         {
           text: "Project Aplikasi",
           link: "#project-app",
-           image: [ "/img/Laravel.jpg","/img/flut.png"],
+           image: [ "/portofoliobaru/img/Laravel.jpg","/portofoliobaru/img/flut.png"],
         },
       ]}
     />
