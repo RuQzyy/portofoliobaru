@@ -179,7 +179,7 @@ const appProjects = [
                 speed="4s"
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "/cv.pdf"; // letakkan file CV di folder public
+                  link.href = "/file/cv.pdf"; // letakkan file CV di folder public
                   link.download = "CV.pdf";
                   link.click();
                 }}
@@ -287,7 +287,7 @@ const appProjects = [
         <button
           onClick={() => {
             const link = document.createElement("a");
-            link.href = "/cv.pdf"; // simpan CV di folder public
+            link.href = "/file/cv.pdf"; // simpan CV di folder public
             link.download = "CV.pdf";
             link.click();
           }}
