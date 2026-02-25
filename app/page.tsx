@@ -293,7 +293,7 @@ const appProjects = [
           }}
           className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2e8f78] hover:bg-[#276d63] transition text-white"
         >
-          Unduh CV
+          Download CV
         </button>
       </div>
     </div>
