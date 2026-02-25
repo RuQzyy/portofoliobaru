@@ -172,17 +172,13 @@ const appProjects = [
               />
 
               <div className="mt-8 flex gap-4">
-               <StarBorder
-                as="button"
+              <StarBorder
+                as="a"
+                href="/file/cv.pdf"
+                download="CV.pdf"
                 className="custom-class"
                 color="cyan"
                 speed="4s"
-                onClick={() => {
-                  const link = document.createElement("a");
-                  link.href = "/file/cv.pdf"; // letakkan file CV di folder public
-                  link.download = "CV.pdf";
-                  link.click();
-                }}
               >
                 <ShinyText
                   text="Download CV"
