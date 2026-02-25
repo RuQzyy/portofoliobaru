@@ -173,29 +173,38 @@ const appProjects = [
 
               <div className="mt-8 flex gap-4">
                <StarBorder
-                  as="button"
-                  className="custom-class"
-                  color="cyan"
-                  speed="4s"
-                >
-                    <ShinyText
+                as="button"
+                className="custom-class"
+                color="cyan"
+                speed="4s"
+                onClick={() => {
+                  const link = document.createElement("a");
+                  link.href = "/cv.pdf"; // letakkan file CV di folder public
+                  link.download = "CV.pdf";
+                  link.click();
+                }}
+              >
+                <ShinyText
                   text="Download CV"
                   className="shiny-inline"
                   speed={3}
                 />
-                </StarBorder>
-
-                <StarBorder
+              </StarBorder>
+               <StarBorder
                   as="button"
                   className="custom-class"
                   color="cyan"
                   speed="4s"
+                  onClick={() => {
+                    const section = document.getElementById("projects");
+                    section?.scrollIntoView({ behavior: "smooth" });
+                  }}
                 >
-                     <ShinyText
-                  text="Explore My Project"
-                  className="shiny-inline"
-                  speed={3}
-                />
+                  <ShinyText
+                    text="Explore My Project"
+                    className="shiny-inline"
+                    speed={3}
+                  />
                 </StarBorder>
               </div>
             </div>
@@ -275,7 +284,15 @@ const appProjects = [
         </div>
 
         {/* BUTTON */}
-        <button className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2e8f78] hover:bg-[#276d63] transition text-white">
+        <button
+          onClick={() => {
+            const link = document.createElement("a");
+            link.href = "/cv.pdf"; // simpan CV di folder public
+            link.download = "CV.pdf";
+            link.click();
+          }}
+          className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2e8f78] hover:bg-[#276d63] transition text-white"
+        >
           Unduh CV
         </button>
       </div>
@@ -426,7 +443,7 @@ const appProjects = [
 
 
 {/* ================= PROJECT FLOWING MENU ================= */}
-<section className="bg-black py-20 overflow-hidden pn-0">
+<section id="projects"className="bg-black py-20 overflow-hidden pn-0">
 
   {/* TITLE — TETAP TERBATAS */}
   <div className="max-w-7xl mx-auto px-6 md:px-16">
