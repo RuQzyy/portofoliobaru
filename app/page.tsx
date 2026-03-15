@@ -295,46 +295,70 @@ const appProjects = [
     </div>
   </SpotlightCard>
 </section>
-{/* ================= ROBOT & SKILLS SECTION ================= */}
-<section className="relative min-h-screen bg-black px-6 md:px-16 py-24">
+{/* ================= SKILLS SECTION (REDESIGN) ================= */}
+<section className="relative bg-black px-6 md:px-16 py-24">
   <div className="max-w-7xl mx-auto">
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-           {/* LEFT — ROBOT PLACEHOLDER */}
-<div className="flex justify-center">
-  <div
-    ref={robotRef}
-    className="relative w-full h-[400px] overflow-hidden"
-  >
-    {robotInView ? (
-      <div className="absolute inset-0 scale-[1.3] translate-y-2">
-        <RobotSpline />
-      </div>
-    ) : (
-      <div className="w-full h-full flex items-center justify-center text-neutral-500">
-        Scroll to load 3D
-      </div>
-    )}
-  </div>
-</div>
+      {/* LEFT — TECH STACK */}
+      <div className="grid grid-cols-3 gap-6">
 
+        {[
+          { name: "Laravel", icon: "/img/lr.webp" },
+          { name: "React", icon: "/img/react.png" },
+          { name: "Flutter", icon: "/img/fl.webp" },
+          { name: "Tailwind", icon: "/img/tailwind.webp" },
+          { name: "MySQL", icon: "/img/mysql.webp" },
+          { name: "GitHub", icon: "/img/github.webp" },
+        ].map((tech) => (
+          <motion.div
+            key={tech.name}
+            whileHover={{ scale: 1.1 }}
+            className="bg-white/5 backdrop-blur rounded-xl p-6 flex flex-col items-center justify-center border border-white/10 hover:border-[#2e8f78] transition"
+          >
+            <img
+              src={tech.icon}
+              className="w-10 h-10 mb-2"
+            />
+            <span className="text-sm text-neutral-300">
+              {tech.name}
+            </span>
+          </motion.div>
+        ))}
+
+      </div>
 
       {/* RIGHT — SKILLS */}
       <div className="space-y-10 text-white">
+
+        {/* TITLE */}
+        <h2 className="text-3xl md:text-4xl font-bold">
+          My <span className="text-[#2e8f78]">Skills</span>
+        </h2>
 
         {/* SOFT SKILLS */}
         <div>
           <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
             Soft Skills
           </h3>
-          <div className="grid grid-cols-2 gap-3 text-sm text-neutral-300">
-            <span>Teamwork</span>
-            <span>Leadership</span>
-            <span>Time Management</span>
-            <span>Critical Thinking</span>
-            <span>Effective Communication</span>
-            <span>Project Management</span>
+
+          <div className="flex flex-wrap gap-3 text-sm">
+            {[
+              "Teamwork",
+              "Leadership",
+              "Time Management",
+              "Critical Thinking",
+              "Communication",
+              "Project Management",
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="px-4 py-2 rounded-full bg-white/10"
+              >
+                {skill}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -343,9 +367,10 @@ const appProjects = [
           <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
             Technical Skills
           </h3>
+
           <div className="grid grid-cols-2 gap-3 text-sm text-neutral-300">
             <span>Full Stack Web Development</span>
-            <span>REST API</span>
+            <span>REST API Development</span>
             <span>Database Management</span>
             <span>UI / UX Design</span>
             <span>Networking</span>
@@ -358,6 +383,7 @@ const appProjects = [
           <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
             Programming Languages
           </h3>
+
           <div className="flex flex-wrap gap-3 text-sm">
             {[
               "PHP (Laravel)",
@@ -381,8 +407,15 @@ const appProjects = [
           <h3 className="text-xl font-semibold text-[#81e6d9] mb-4">
             Tools
           </h3>
+
           <div className="flex flex-wrap gap-3 text-sm">
-            {["VS Code", "GitHub", "Figma", "XAMPP"].map((tool) => (
+            {[
+              "VS Code",
+              "GitHub",
+              "Figma",
+              "XAMPP",
+              "Postman",
+            ].map((tool) => (
               <span
                 key={tool}
                 className="rounded-lg border border-white/10 px-4 py-2 text-neutral-300"
@@ -397,7 +430,7 @@ const appProjects = [
     </div>
   </div>
 </section>
-{/* =============== END ROBOT & SKILLS ================= */}
+{/* ================= END SKILLS ================= */}
 
 {/* ================= GITHUB CONTRIBUTIONS ================= */}
 <section className="bg-black px-6 md:px-16 py-24 pb-0">
