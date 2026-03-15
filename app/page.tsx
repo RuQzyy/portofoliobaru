@@ -159,7 +159,7 @@ const appProjects = [
 
               <BlurText
                 key={blurKey}
-                text="Saya adalah mahasiswa yang berfokus pada pengembangan web, berperan sebagai Web Developer dan Full Stack Developer. Berpengalaman membangun website modern dan responsif, serta membuka jasa pembuatan website profesional untuk kebutuhan personal, bisnis, maupun institusi."
+                text="Saya adalah mahasiswa yang berfokus pada pengembangan web dan aplikasi sebagai Web Developer dan Mobile App Developer. Saya berpengalaman membangun website serta aplikasi modern yang responsif dan efisien, serta menyediakan layanan pengembangan solusi digital untuk kebutuhan personal, bisnis, maupun institusi."
                 className="mt-4 max-w-xl text-white leading-relaxed"
                 animateBy="words"
                 direction="top"
@@ -239,10 +239,10 @@ const appProjects = [
           Tentang <span className="text-[#2e8f78]">Saya</span>
         </h2>
 
-        <p className="text-neutral-400 leading-relaxed mb-4">
-          Saya adalah mahasiswa Sistem Informasi di ITB Stikom Ambon dan saat ini aktif sebagai Freelance Web Developer.  
-          Dengan pengalaman praktis di dunia pengembangan web, saya terbiasa membangun solusi digital yang efektif dan estetis.
-        </p>
+       <p className="text-neutral-400 leading-relaxed mb-4">
+  Saya adalah mahasiswa Sistem Informasi di ITB Stikom Ambon dan saat ini aktif sebagai Freelance Web Developer dan Mobile App Developer.  
+  Dengan pengalaman praktis dalam pengembangan website dan aplikasi, saya terbiasa membangun solusi digital yang modern, responsif, dan efektif untuk berbagai kebutuhan.
+</p>
 
         <p className="text-neutral-400 leading-relaxed">
           Selain itu, saya memiliki pengalaman mengajar mata pelajaran Website di SMK Muhammadiyah Ambon.  
